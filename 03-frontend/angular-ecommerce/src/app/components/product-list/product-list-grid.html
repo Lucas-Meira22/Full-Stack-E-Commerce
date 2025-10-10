@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+                <p>PRODUCT LIST</p>
+                <div *ngFor="let product of products" class="col-md-3">
+                    <div class="product-box">
+                        <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+                        <p>{{ product.name }}</p>
+                        <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+
+</div>
