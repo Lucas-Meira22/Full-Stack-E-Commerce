@@ -7,7 +7,10 @@
                 <p>PRODUCT LIST</p>
                 <div *ngFor="let product of products" class="col-md-3">
                     <div class="product-box">
-                        <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+                        <a routerLink="/products/{{ product.id }}">
+                            <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+                        </a>
+
                         <p>{{ product.name }}</p>
                         <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
                         <a href="#" class="btn btn-primary">Add to Cart</a>
