@@ -86,6 +86,7 @@ public class MyDatarestConfig implements RepositoryRestConfigurer {
         Class[] domainTypes = entityClasses.toArray(new Class[0]);
         log.info("+++++++++++++{} +++++++++++++++++++" , domainTypes);
         config.exposeIdsFor(domainTypes);
+
     }
 
 

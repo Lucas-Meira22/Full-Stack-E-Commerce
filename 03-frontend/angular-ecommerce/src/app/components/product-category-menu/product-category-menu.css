@@ -1,0 +1,9 @@
+/* Styles for product category menu links */
+.navbar-sidebar .navbar-list li a{
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.navbar-sidebar .navbar-list li a:hover{
+	text-decoration:underline;
+}
