@@ -12,7 +12,11 @@
                         <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
                         <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
-                
+
+                    <!-- if dosent contain a list -->
+                    <div class="alert alert-warning col-md-12" *ngIf="products?.length == 0" >
+                        No products found.
+                    </div>
                 </div>
             </div>
         </div>
