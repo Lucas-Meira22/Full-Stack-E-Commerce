@@ -14,7 +14,12 @@ export class ProductService {
   private categoryUrl = 'http://localhost:8080/api/product-category';
   
   constructor(private httpClient: HttpClient) { }
+  
+  getProduct(prodId: number): Observable<Product> {
+    const searchUrl =  `${this.baseUrl}/${prodId}`;
 
+    return this.httpClient.get<Product>(searchUrl);
+  }
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl =  `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
 
@@ -24,6 +29,14 @@ export class ProductService {
     
   }
 
+  searchProduct(keyWord: string): Observable<Product[]> {
+    const searchUrl =  `${this.baseUrl}/search/findByNameContaining?name=${keyWord}`;
+    
+    return this.httpClient.get<GetResponse>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
+  
   getProductCategories(): Observable<ProductCategory[]> {
 
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
@@ -31,31 +44,30 @@ export class ProductService {
     );
   }
 
-  searchProduct(keyWord: string): Observable<Product[]> {
-    const searchUrl =  `${this.baseUrl}/search/findByNameContaining?name=${keyWord}`;
-
-    return this.httpClient.get<GetResponse>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    );
-  }
-
-  getProduct(prodId: number): Observable<Product> {
-    const searchUrl =  `${this.baseUrl}/${prodId}`;
-
-    return this.httpClient.get<Product>(searchUrl);
-  }
-
   getProductListPaginate(thePage: number,
                          thePageSize: number,
                          theCategoryId: number): Observable<GetResponse> {
 
+    
     const searchUrl =  `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
                     + `&page=${thePage}&size=${thePageSize}`;
 
     return this.httpClient.get<GetResponse>(searchUrl);
     
+    
   }
- 
+ searchProductListPaginate(thePage: number,
+                         thePageSize: number,
+                         theKeyword: string): Observable<GetResponse> {
+
+    //url based on keyword, page and size
+    const searchUrl =  `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`
+                    + `&page=${thePage}&size=${thePageSize}`;
+
+    return this.httpClient.get<GetResponse>(searchUrl);
+    
+    
+  }
 }
   
 

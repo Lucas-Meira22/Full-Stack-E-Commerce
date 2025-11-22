@@ -1,30 +1,56 @@
 <div class="main-content">
     <div class="section-content section-content-p30">
         <h4>Category: {{ currentCategoryName }}</h4>
-        <hr>
+        <hr />
         <div class="container-fluid">
             <div class="row">
                 <p>PRODUCT LIST</p>
                 <div *ngFor="let product of products" class="col-md-3">
                     <div class="product-box">
                         <a routerLink="/products/{{ product.id }}">
-                            <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+                            <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
                         </a>
 
                         <p>{{ product.name }}</p>
-                        <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+                        <div class="price">{{ product.unitPrice | currency : 'USD' }}</div>
                         <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
 
                     <!-- if dosent contain a list -->
-                    <div class="alert alert-warning col-md-12" *ngIf="products?.length == 0" >
+                    <div class="alert alert-warning col-md-12" *ngIf="products?.length == 0">
                         No products found.
                     </div>
                 </div>
             </div>
+            <!--footer-->
+            <div class="footer-pagination mt-4">
+                <div class="row align-items-center g-3 p-3">
+                    <!-- LEFT: Pagination -->
+                    <div class="col-md-9 d-flex justify-content-start p-3">
+                        <ngb-pagination [(page)]="thePageNumber"
+                                        [pageSize]="thePageSize"
+                                        [collectionSize]="theTotalElements"
+                                        [maxSize]="5"
+                                        [boundaryLinks]="true"
+                                        (pageChange)="listProducts()">
+                        </ngb-pagination>
+                    </div>
+
+                    <!-- RIGHT: Page Size -->
+                    <div
+                        class="col-md-3 d-flex align-items-center justify-content-end gap-3 p-3">
+                        <span>Page Size</span>
+
+                        <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                            <option>2</option>
+                            <option selected="true">5</option>
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-    
     </div>
-
-
 </div>
