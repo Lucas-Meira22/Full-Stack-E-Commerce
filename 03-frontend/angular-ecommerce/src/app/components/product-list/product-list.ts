@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './product-list.css',
 })
 export class ProductList {
+
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
@@ -106,5 +107,11 @@ export class ProductList {
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     }
+  }
+  addToCart(prodToAdd: Product) {
+
+    console.log(`Adding to cart: ${prodToAdd.name}, ${prodToAdd.unitPrice}`);
+
+    //TODO
   }
 }

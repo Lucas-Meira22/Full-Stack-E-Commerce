@@ -5,10 +5,11 @@ import { routes } from './app.routes';
 import { ProductCategoryMenuComponent } from "./components/product-category-menu/product-category-menu";
 import { Search } from "./components/search/search";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatus } from "./components/cart-status/cart-status";
 
 @Component({
   selector: 'app-root',
-  imports: [ProductList, RouterOutlet, RouterLink, RouterLinkActive, ProductCategoryMenuComponent, Search, NgbModule],
+  imports: [ProductList, RouterOutlet, RouterLink, RouterLinkActive, ProductCategoryMenuComponent, Search, NgbModule, CartStatus],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
