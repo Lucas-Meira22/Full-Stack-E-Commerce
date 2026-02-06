@@ -64,6 +64,25 @@ export class Checkout implements OnInit {
     }
   }
 
+  handleMonthsAndYears(){
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
+
+    const currentYear: number  = new Date().getFullYear();
+    const selectedYear: number  = Number(creditCardFormGroup?.value.expYear);
+
+    let startMonth:number;
+    // if the current year == the selected currentYear,  start the current month
+    if(currentYear == selectedYear){
+      startMonth = new Date().getMonth() +1;
+    }else{
+      startMonth = 1;
+    }
+    this.formService.getCreditCardMonth(startMonth).subscribe(data =>{
+      console.log("Retrived credit card months: " + JSON.stringify(data));
+      this.creditCardMonths = data;
+      
+    })
+  }
   onSubmit(){
     console.log('Handling the submit button');
     console.log('Customer:', this.checkoutFormGroup.get('customer')?.value);
